@@ -1,0 +1,32 @@
+---
+
+- name:  Launch EC2 instace with public IP
+  amazon.aws.ec2_instance:
+    name: "{{ item.name }}"
+    region: "{{ region }}"
+    instance_type: "{{ instance_type }}"
+    security_group: "{{ security_group }}"
+    aws_access_key: "{{ ec2_access_key }}"
+    aws_secret_key: "{{ ec2_secret_key }}"
+    image_id: "{{ item.image_id }}"
+    network_interfaces:
+      - assign_public_ip: true
+    state: "{{ state }}"
+  loop: "{{ ec2_instances }}"  
+  when: state == "present"
+
+- name:  Terminate EC2 instace
+  amazon.aws.ec2_instance:
+    name: "{{ item.name }}"
+    region: "{{ region }}"
+    instance_type: "{{ instance_type }}"
+    security_group: "{{ security_group }}"
+    aws_access_key: "{{ ec2_access_key }}"
+    aws_secret_key: "{{ ec2_secret_key }}"
+    image_id: "{{ item.image_id }}"
+    network_interfaces:
+      - assign_public_ip: true
+    state: "{{ state }}"
+  loop: "{{ ec2_instances }}"  
+  when: state == "absent" and 'ubuntu' in item.name
+     

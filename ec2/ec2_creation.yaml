@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars_files:
+    - group_vars/all/pass.yaml
+
+  roles:
+    - ec2_role
+    
+ 

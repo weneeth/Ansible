@@ -1,0 +1,26 @@
+---
+# vars file for ec2_role
+ansible_python_interpreter: /home/vineeth/ANSIBLE/ec2/ansible-env/bin/python
+
+
+
+# type: "t2.micro"
+# region: "us-east-1"
+
+region: "us-east-1"
+ec2_access_key: "{{ aws_access_key }}"
+ec2_secret_key: "{{ aws_secret_key }}"
+instance_type: "t2.micro"
+# key_name: "prod-ssh-key"
+# vpc_subnet_id: "subnet-5ca1ab1e"
+security_group: "default"
+state: "absent"  # Change to "present" to create instances
+
+ec2_instances:
+      - name: "ubuntu-instance-1"
+        image_id: "ami-084568db4383264d4"  # Ubuntu AMI
+      - name: "ubuntu-instance-2"
+        image_id: "ami-084568db4383264d4"  # Ubuntu AMI
+      - name: "centos-instance"
+        image_id: "ami-0e449927258d45bc4"  # CentOS AMI
+    
