@@ -28,5 +28,5 @@
       - assign_public_ip: true
     state: "{{ state }}"
   loop: "{{ ec2_instances }}"  
-  when: state == "absent" and 'ubuntu' in item.name
+  when: state == "absent" and 'centos' in item.name  #change the state value to "present" to create instances in EC2/ec2_role/vars/main.yml
      
